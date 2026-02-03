@@ -156,7 +156,25 @@ Your event, your way – we make it happen
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					
+					<!-- Mission and Vision Statements Section -->
+					<div class="row mission-vision-row" style="margin-top: 60px;">
+						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+							<div class="mission-vision-card">
+								<h3>Mission Statement</h3>
+								<p>Our mission is to craft exceptional experiences that surpass expectations, leaving a lasting impression on every client and guest. We are committed to creativity, innovation, and personalized service, ensuring that each event we create is a seamless blend of vision, passion, and excellence.</p>
+							</div>
+						</div>
+						
+						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
+							<div class="mission-vision-card">
+								<h3>Vision Statement</h3>
+								<p>Our vision is to be the premier choice for discerning individuals and organizations seeking unforgettable event experiences. We strive to continuously raise the bar in event planning and execution, setting new standards of creativity, professionalism, and customer satisfaction in the industry. Through our dedication to innovation and personalized service, we aim to inspire, delight, and exceed the expectations of our clients, leaving a legacy of cherished memories and enduring relationships.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row"></div>
 						<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 							<h2 class="colorlib-heading">Reason For Choosing Our Consultancy</h2>
 							<h4>Tailored advice and support</h4>
@@ -395,6 +413,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 	<script>
 	$(document).ready(function() {
 		var isMenuTop = false;
+		
+		// Equal height function for mission/vision cards
+		function equalizeCardHeights() {
+			if ($(window).width() > 768) {
+				// Set a fixed height that accommodates the content
+				$('.mission-vision-card').height(350);
+			} else {
+				$('.mission-vision-card').height('auto');
+			}
+		}
+		
+		// Run on page load
+		equalizeCardHeights();
+		
+		// Run on window resize
+		$(window).resize(function() {
+			equalizeCardHeights();
+		});
 		
 		$('#toggle-menu-position').click(function() {
 			if (!isMenuTop) {
@@ -661,7 +697,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 	
 	.team-content p {
 		color: #666;
-		font-size: 14px;
+		font-size: 15px;
 		line-height: 1.6;
 		margin: 0;
 		font-family: "Quicksand", Arial, sans-serif;
@@ -682,7 +718,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 		}
 		
 		.flip-card-content p {
-			font-size: 14px;
+			font-size: 15px;
 		}
 		
 		.flip-card-stats .stat .number {
@@ -721,7 +757,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 		}
 		
 		.flip-card-content p {
-			font-size: 13px;
+			font-size: 15px;
 			margin-bottom: 20px;
 		}
 		
@@ -750,7 +786,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 		}
 		
 		.team-content p {
-			font-size: 13px;
+			font-size: 15px;
 		}
 	}
 	
@@ -760,6 +796,105 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 		color: rgba(255, 255, 255, 0.8);
 		padding: 60px 0 40px 0;
 		margin-top: 0;
+	}
+	
+	/* Mission and Vision Cards Styles */
+	.mission-vision-card {
+		background: #fff;
+		border-radius: 15px;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+		padding: 35px 30px;
+		text-align: center;
+		transition: all 0.3s ease;
+		margin-bottom: 30px;
+		border: 2px solid transparent;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		overflow: hidden;
+		word-wrap: break-word;
+		min-height: 350px;
+	}
+	
+	/* Ensure equal height for mission/vision row */
+	.mission-vision-row {
+		display: flex;
+		align-items: stretch;
+	}
+	
+	.mission-vision-row > [class*="col-"] {
+		display: flex;
+	}
+	
+	.mission-vision-card:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+		border-color: #FFC300;
+	}
+	
+	.mission-vision-card h3 {
+		color: #2C2C2C;
+		font-size: 20px;
+		font-weight: 700;
+		margin-bottom: 15px;
+		font-family: "Quicksand", Arial, sans-serif;
+		flex-shrink: 0;
+		line-height: 1.2;
+	}
+	
+	.mission-vision-card p {
+		color: #666;
+		font-size: 15px;
+		line-height: 1.5;
+		margin: 0;
+		font-family: "Quicksand", Arial, sans-serif;
+		flex-grow: 1;
+		text-align: left;
+		hyphens: auto;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		max-height: calc(100% - 60px);
+		overflow: hidden;
+	}
+	
+	/* Responsive adjustments for mission/vision cards */
+	@media screen and (max-width: 768px) {
+		.mission-vision-row {
+			display: block;
+		}
+		
+		.mission-vision-row > [class*="col-"] {
+			display: block;
+		}
+		
+		.mission-vision-card {
+			padding: 30px 25px;
+			margin-bottom: 40px;
+			height: auto;
+		}
+		
+		.mission-vision-card h3 {
+			font-size: 22px;
+		}
+		
+		.mission-vision-card p {
+			font-size: 14px;
+		}
+	}
+	
+	@media screen and (max-width: 480px) {
+		.mission-vision-card {
+			padding: 25px 20px;
+		}
+		
+		.mission-vision-card h3 {
+			font-size: 20px;
+			margin-bottom: 15px;
+		}
+		
+		.mission-vision-card p {
+			font-size: 15px;
+		}
 	}
 	
 	.footer-section {
