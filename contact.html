@@ -61,17 +61,19 @@
 		<header id="colorlib-header" class="colorlib-header-top" style="display: none;">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-3">
-						<h1 id="colorlib-logo-top"><a href="index.html">Langa Event</a></h1>
+					<div class="col-md-4">
+						<div class="logo-toggle-wrapper">
+							<h1 id="colorlib-logo-top"><a href="index.html">Langa Events</a></h1>
+							<button id="toggle-menu-position-top" class="btn btn-toggle-menu">Move Menu to Side</button>
+						</div>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<nav id="colorlib-main-menu-top" role="navigation">
 							<ul>
 								<li><a href="index.html">Home</a></li>
 								<li><a href="work.html">Project</a></li>
 								<li><a href="about.html">About</a></li>
 								<li><a href="services.html">Services</a></li>
-								<li><a href="blog.html">Blog</a></li>
 								<li class="colorlib-active"><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav>
@@ -82,22 +84,22 @@
 
 		<!-- Sidebar Navigation (Default) -->
 		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-			<h1 id="colorlib-logo"><a href="index.html">Langa Event</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html">Langa Events</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li><a href="index.html">Home</a></li>
 					<li><a href="work.html">Project</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="services.html">Services</a></li>
-					<li><a href="blog.html">Blog</a></li>
 					<li class="colorlib-active"><a href="contact.html">Contact</a></li>
+					<li class="menu-toggle-item"><button id="toggle-menu-position" class="btn btn-toggle-menu">Move Menu to Top</button></li>
 				</ul>
 			</nav>
 
 			<div class="colorlib-footer">
-				<p><small>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				<p><small>&copy; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> Distributed by: <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Demo Images: <a href="http://nothingtochance.co/" target="_blank">nothingtochance.co</a></span></small></p>
+Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </span> <span>Demo Images: <a href="http://nothingtochance.co/" target="_blank">nothingtochance.co</a></span></small></p>
 				<ul>
 					<li><a href="#"><i class="icon-facebook2"></i></a></li>
 					<li><a href="#"><i class="icon-twitter2"></i></a></li>
@@ -108,11 +110,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 
 		</aside>
 
-		<!-- Menu Toggle Button -->
-		<div class="menu-position-toggle">
-			<button id="toggle-menu-position" class="btn btn-primary">Move Menu to Top</button>
-		</div>
-
 		<div id="colorlib-main">
 
 			<div class="colorlib-contact">
@@ -121,6 +118,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
 							<span class="heading-meta">Read</span>
 							<h2 class="colorlib-heading">Get in Touch</h2>
+							<h3>Drop us a line, shoot us a text, or even send a pigeon our way!<br>
+							We're always here to chat about your next unforgettable event.<br>
+							Reach out and let's start creating magic together.</h3>
 						</div>
 					</div>
 					<div class="row">
@@ -130,7 +130,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 									<i class="icon-globe-outline"></i>
 								</div>
 								<div class="colorlib-text">
-									<p><a href="#">info@domain.com</a></p>
+									<p><a href="#">info@langaevents.com</a></p>
 								</div>
 							</div>
 
@@ -139,7 +139,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 									<i class="icon-map"></i>
 								</div>
 								<div class="colorlib-text">
-									<p>198 West 21th Street, Suite 721 New York NY 10016</p>
+									<p>Tannery industrial, Silverton Pretoria</p>
 								</div>
 							</div>
 
@@ -148,26 +148,27 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 									<i class="icon-phone"></i>
 								</div>
 								<div class="colorlib-text">
-									<p><a href="tel://">+123 456 7890</a></p>
+									<p><a href="tel://">+079 537 6011</a></p>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-7 col-md-push-1">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInLeft">
-									<form action="">
+									<form id="contact-form" action="https://formspree.io/f/xpqjarjr" method="POST">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name">
+											<input type="text" name="name" class="form-control" placeholder="Name" required>
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Email">
+											<input type="email" name="email" class="form-control" placeholder="Email" required>
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Subject">
+											<input type="text" name="subject" class="form-control" placeholder="Subject" required>
 										</div>
 										<div class="form-group">
-											<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+											<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
 										</div>
+										<input type="hidden" name="_subject" value="New Contact Form Submission - Langa Events">
 										<div class="form-group">
 											<input type="submit" class="btn btn-primary btn-send-message" value="Send Message">
 										</div>
@@ -180,8 +181,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 				</div>
 			</div>
 
-			<div id="map"></div>	
-
 			<div id="get-in-touch" class="colorlib-bg-color">
 				<div class="colorlib-narrow-content">
 					<div class="row">
@@ -192,7 +191,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
 							<p class="colorlib-lead">Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-learn">Contact me!</a></p>
+							<p><a href="contact.html" class="btn btn-primary btn-learn">Contact me!</a></p>
 						</div>
 						
 					</div>
@@ -208,7 +207,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 				<div class="col-md-12 text-center">
 					<p><small>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> Distributed by: <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Demo Images: <a href="http://nothingtochance.co/" target="_blank">nothingtochance.co</a></span></small></p>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Demo Images: <a href="http://nothingtochance.co/" target="_blank">nothingtochance.co</a></span> <br> Developed by <a href='https://smartmacmane.co.za' target>Smart Macmane</a></small></p>
 					<ul class="colorlib-footer-social">
 						<li><a href="#"><i class="icon-facebook2"></i></a></li>
 						<li><a href="#"><i class="icon-twitter2"></i></a></li>
@@ -236,12 +235,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Made 
 	<script src="js/owl.carousel.min.js"></script>
 	<!-- Counters -->
 	<script src="js/jquery.countTo.js"></script>
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
 	
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
+	<!-- Contact Form Handler -->
+	<script src="js/contact-form-handler.js"></script>
 	<!-- Menu Toggle JS -->
 	<script src="js/menu-toggle.js"></script>
 

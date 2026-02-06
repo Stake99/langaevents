@@ -1,8 +1,60 @@
-.menu-position-toggle {
-	position: fixed;
-	top: 20px;
-	left: 20px;
-	z-index: 9999;
+/* Toggle Button Styles */
+.btn-toggle-menu {
+	background: #FFC300;
+	color: #2C2C2C;
+	border: none;
+	padding: 8px 15px;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-family: "Quicksand", Arial, sans-serif;
+}
+
+.btn-toggle-menu:hover {
+	background: #2C2C2C;
+	color: #FFC300;
+	transform: translateY(-2px);
+}
+
+/* Sidebar toggle button */
+.menu-toggle-item {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-toggle-item .btn-toggle-menu {
+	width: 100%;
+}
+
+/* Top header logo and toggle wrapper */
+.logo-toggle-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.logo-toggle-wrapper h1 {
+	margin: 0;
+}
+
+.logo-toggle-wrapper .btn-toggle-menu {
+	white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+	.logo-toggle-wrapper {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+	
+	.logo-toggle-wrapper .btn-toggle-menu {
+		font-size: 12px;
+		padding: 6px 12px;
+	}
 }
 
 .colorlib-header-top {
