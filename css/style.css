@@ -237,7 +237,40 @@ figure {
   @media screen and (max-width: 768px) {
     #colorlib-main {
       width: 100%;
-      padding-top: 80px; } }
+      padding-top: -2em !important;
+    }
+
+    @media screen and (max-width: 768px) {
+      .colorlib-nav-toggle {
+        position: absolute;
+        right: 20px;
+        left: auto;
+        top: 20px;
+        z-index: 2002;
+      }
+      #colorlib-main-menu-top {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        left: 0;
+        width: 90vw;
+        margin: 0 auto;
+        background: #222;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        z-index: 2001;
+        display: none;
+      }
+      #colorlib-header.menu-open #colorlib-main-menu-top {
+        display: block;
+        animation: floatDown 0.3s ease;
+      }
+      @keyframes floatDown {
+        0% { transform: translateY(-30px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+      }
+    }
+  }
 
 #colorlib-hero {
   min-height: 500px;
@@ -249,7 +282,9 @@ figure {
   @media screen and (max-width: 768px) {
     #colorlib-hero {
       min-height: 360px;
-      margin-bottom: 6em; } }
+      margin-bottom: -2em !important;
+    }
+  }
   @media screen and (max-width: 480px) {
     #colorlib-hero {
       min-height: 320px;

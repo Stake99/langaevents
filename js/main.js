@@ -233,6 +233,16 @@
 		sliderMain();
 		stickyFunction();
 		owlCrouselFeatureSlide();
+
+		// Mobile hamburger menu float logic
+		var navToggle = document.querySelector('.colorlib-nav-toggle');
+		var header = document.getElementById('colorlib-header');
+		if (navToggle && header) {
+			navToggle.addEventListener('click', function(e) {
+				e.preventDefault();
+				header.classList.toggle('menu-open');
+			});
+		}
 	});
 
 
