@@ -46,13 +46,23 @@ body, #colorlib-main, #colorlib-hero {
             margin-bottom: 0 !important;
             margin-top: 0 !important;
         }
+    /* Only show one hamburger button on mobile */
     .js-colorlib-nav-toggle {
-        display: block;
+        display: flex !important;
         position: fixed;
         top: 15px;
         right: 15px;
         left: auto;
         z-index: 2002;
+    }
+    /* Hide any duplicate hamburger/menu buttons */
+    #colorlib-header .js-colorlib-nav-toggle:not(:first-child),
+    #colorlib-header .colorlib-nav-toggle:not(:first-child) {
+        display: none !important;
+    }
+    /* Remove yellow line from floating menu */
+    .colorlib-header-top #colorlib-main-menu-top {
+        border-bottom: none !important;
     }
     
     /* Prevent content shift when menu is open */
@@ -109,6 +119,26 @@ body, #colorlib-main, #colorlib-hero {
         font-size: 15px;
         min-height: 50px;
         line-height: 1.4;
+    }
+    /* Hamburger icon turns into X when menu is open */
+    .js-colorlib-nav-toggle.active i:before,
+    .js-colorlib-nav-toggle.menu-opened i:before {
+        content: "✕" !important;
+        font-size: 32px !important;
+        color: #2C2C2C !important;
+        font-weight: bold !important;
+        line-height: 1 !important;
+    }
+    .js-colorlib-nav-toggle i:before {
+        content: "☰";
+        font-size: 28px;
+        color: #2C2C2C;
+        font-weight: normal;
+        line-height: 1;
+    }
+    .js-colorlib-nav-toggle {
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 

@@ -8,7 +8,6 @@ $(document).ready(function() {
         if ($('.js-colorlib-nav-toggle').length === 0) {
             $('body').prepend('<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>');
         }
-        
         // Ensure menu is in top position by default
         if (!$('body').hasClass('menu-top')) {
             $('body').addClass('menu-top');
@@ -17,44 +16,39 @@ $(document).ready(function() {
             $('#colorlib-footer').show();
             $('#colorlib-main').css('margin-left', '0');
         }
-        
         // Mobile menu toggle functionality
         $('.js-colorlib-nav-toggle').on('click', function(e) {
             e.preventDefault();
-            
             var $menu = $('#colorlib-main-menu-top');
-            
+            var $toggle = $(this);
             if ($menu.hasClass('active')) {
                 $menu.removeClass('active');
                 $('body').removeClass('menu-show');
-                $(this).removeClass('active');
+                $toggle.removeClass('active menu-opened');
             } else {
                 $menu.addClass('active');
                 $('body').addClass('menu-show');
-                $(this).addClass('active');
+                $toggle.addClass('active menu-opened');
             }
         });
-        
         // Close mobile menu when clicking on menu items
         $('#colorlib-main-menu-top ul li a').on('click', function() {
             if ($(window).width() <= 992) {
                 $('#colorlib-main-menu-top').removeClass('active');
                 $('body').removeClass('menu-show');
-                $('.js-colorlib-nav-toggle').removeClass('active');
+                $('.js-colorlib-nav-toggle').removeClass('active menu-opened');
             }
         });
-        
         // Close mobile menu when clicking outside
         $(document).on('click', function(e) {
             if (!$(e.target).closest('#colorlib-main-menu-top, .js-colorlib-nav-toggle').length) {
                 if ($('#colorlib-main-menu-top').hasClass('active')) {
                     $('#colorlib-main-menu-top').removeClass('active');
                     $('body').removeClass('menu-show');
-                    $('.js-colorlib-nav-toggle').removeClass('active');
+                    $('.js-colorlib-nav-toggle').removeClass('active menu-opened');
                 }
             }
         });
-        
         // Handle window resize
         $(window).on('resize', function() {
             if ($(window).width() > 992) {
