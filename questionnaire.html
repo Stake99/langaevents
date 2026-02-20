@@ -188,7 +188,7 @@
                 </div>
             </div>
             
-            <form id="eventQuoteForm" action="https://formspree.io/f/xpqjarjr" method="POST">
+            <form id="eventQuoteForm" method="POST">
                 <!-- Step 1: Event Type -->
                 <div class="form-step active" data-step="1">
                     <h3>What type of event are you planning?</h3>
@@ -1425,20 +1425,40 @@
             });
             
             if (isValid) {
-                // Submit form via AJAX
+                // Show loading state
+                var submitBtn = $('.btn-submit');
+                var originalText = submitBtn.html();
+                submitBtn.prop('disabled', true).html('<i class="icon-spinner"></i> Sending...');
+                
+                // Prepare form data
+                var formData = {};
+                $(this).serializeArray().forEach(function(field) {
+                    if (formData[field.name]) {
+                        // Handle multiple values (like checkboxes)
+                        if (!Array.isArray(formData[field.name])) {
+                            formData[field.name] = [formData[field.name]];
+                        }
+                        formData[field.name].push(field.value);
+                    } else {
+                        formData[field.name] = field.value;
+                    }
+                });
+                
+                // Submit form via AJAX to our API
                 $.ajax({
-                    url: $(this).attr('action'),
+                    url: '/api/send-email',
                     method: 'POST',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function() {
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function(response) {
                         $('#eventQuoteModal').fadeOut(300);
                         $('#thankYouModal').fadeIn(300);
+                        submitBtn.prop('disabled', false).html(originalText);
                     },
-                    error: function() {
-                        // Still show thank you on error (Formspree might return error but still process)
-                        $('#eventQuoteModal').fadeOut(300);
-                        $('#thankYouModal').fadeIn(300);
+                    error: function(xhr, status, error) {
+                        console.error('Submission error:', error);
+                        alert('There was an error submitting your inquiry. Please try again or contact us directly at 076 721 8716.');
+                        submitBtn.prop('disabled', false).html(originalText);
                     }
                 });
             }

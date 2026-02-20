@@ -1,7 +1,7 @@
 /**
  * Contact Form Handler
  * Handles form submission, validation, and user feedback
- * Works with Formspree for email delivery
+ * Works with Nodemailer API endpoint
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -38,26 +38,31 @@ function handleFormSubmit(e) {
 	submitButton.disabled = true;
 	submitButton.value = 'Sending...';
 	
-	// Get form data and action URL
-	const formData = new FormData(form);
-	const actionUrl = form.action;
+	// Prepare form data as JSON
+	const formData = {
+		name: name,
+		email: email,
+		subject: subject,
+		message: message,
+		_subject: `Contact Form: ${subject}`
+	};
 	
-	// Send data to Formspree
-	fetch(actionUrl, {
+	// Send data to our API endpoint
+	fetch('/api/send-email', {
 		method: 'POST',
-		body: formData,
 		headers: {
+			'Content-Type': 'application/json',
 			'Accept': 'application/json'
-		}
+		},
+		body: JSON.stringify(formData)
 	})
-	.then(response => {
-		if (response.ok) {
+	.then(response => response.json())
+	.then(data => {
+		if (data.success) {
 			showSuccessMessage('Message sent successfully! We\'ll get back to you soon.');
 			form.reset();
 		} else {
-			return response.json().then(data => {
-				throw new Error(data.error || 'Failed to send message');
-			});
+			throw new Error(data.error || 'Failed to send message');
 		}
 	})
 	.catch(error => {
@@ -101,8 +106,6 @@ function validateForm(name, email, subject, message) {
 	
 	return true;
 }
-
-// sendFormData function removed - now using Formspree directly in handleFormSubmit
 
 /**
  * Show success message to user
