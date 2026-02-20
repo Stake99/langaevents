@@ -100,10 +100,13 @@ module.exports = async (req, res) => {
     emailContent += '</div>';
 
     // Email options
+    const customerName = formData.name || formData.fullName || 'Unknown';
+    const subjectPrefix = customerName !== 'Unknown' ? `[${customerName}] ` : '';
+    
     const mailOptions = {
       from: `"${process.env.SMTP_FROM_NAME || 'Langa Events'}" <${process.env.SMTP_FROM_EMAIL || smtpUser}>`,
       to: process.env.SMTP_TO_EMAIL || 'info@langaevents.com',
-      subject: formData._subject || 'New Event Inquiry - Langa Events',
+      subject: subjectPrefix + (formData._subject || 'New Event Inquiry - Langa Events'),
       html: emailContent,
       replyTo: customerEmail || smtpUser // Reply-To will be the customer's email
     };
