@@ -60,23 +60,44 @@ module.exports = async (req, res) => {
     console.log('SMTP connection verified successfully');
 
     // Format the email content
-    let emailContent = '<h2>New Event Inquiry from Langa Events Website</h2>';
+    let emailContent = '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">';
+    emailContent += '<h2 style="color: #2C2C2C; border-bottom: 3px solid #FFC300; padding-bottom: 10px;">New Event Inquiry from Langa Events Website</h2>';
+    
+    // Highlight the customer's email at the top
+    const customerEmail = formData.email || formData.Email;
+    const customerName = formData.name || formData.fullName;
+    
+    if (customerEmail || customerName) {
+      emailContent += '<div style="background: #FFF8E1; padding: 15px; border-left: 4px solid #FFC300; margin: 20px 0;">';
+      emailContent += '<h3 style="margin: 0 0 10px 0; color: #2C2C2C;">Customer Contact Information</h3>';
+      if (customerName) {
+        emailContent += `<p style="margin: 5px 0;"><strong>Name:</strong> ${customerName}</p>`;
+      }
+      if (customerEmail) {
+        emailContent += `<p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:${customerEmail}" style="color: #2C2C2C; font-weight: bold;">${customerEmail}</a></p>`;
+      }
+      emailContent += '</div>';
+    }
     
     // Add all form fields to email
+    emailContent += '<div style="margin-top: 20px;">';
     for (const [key, value] of Object.entries(formData)) {
-      if (key !== '_subject' && value) {
+      if (key !== '_subject' && key !== 'email' && key !== 'Email' && key !== 'name' && key !== 'fullName' && value) {
         const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         
         // Handle array values (like services)
         if (Array.isArray(value)) {
-          emailContent += `<p><strong>${label}:</strong><br>${value.join('<br>')}</p>`;
+          emailContent += `<p style="margin: 10px 0;"><strong style="color: #2C2C2C;">${label}:</strong><br>${value.join('<br>')}</p>`;
         } else {
-          emailContent += `<p><strong>${label}:</strong> ${value}</p>`;
+          emailContent += `<p style="margin: 10px 0;"><strong style="color: #2C2C2C;">${label}:</strong> ${value}</p>`;
         }
       }
     }
+    emailContent += '</div>';
 
-    emailContent += '<hr><p style="color: #999; font-size: 12px;">This email was sent from the Langa Events website questionnaire form.</p>';
+    emailContent += '<hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">';
+    emailContent += '<p style="color: #999; font-size: 12px; text-align: center;">This email was sent from the Langa Events website questionnaire form.</p>';
+    emailContent += '</div>';
 
     // Email options
     const mailOptions = {
@@ -84,7 +105,7 @@ module.exports = async (req, res) => {
       to: process.env.SMTP_TO_EMAIL || 'info@langaevents.com',
       subject: formData._subject || 'New Event Inquiry - Langa Events',
       html: emailContent,
-      replyTo: formData.email || formData.Email || smtpUser
+      replyTo: customerEmail || smtpUser // Reply-To will be the customer's email
     };
 
     console.log('Sending email...');
