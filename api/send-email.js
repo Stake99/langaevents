@@ -10,31 +10,48 @@ module.exports = async (req, res) => {
   try {
     const formData = req.body;
 
+    // Check if credentials exist
+    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.error('Missing SMTP credentials!');
+      console.error('SMTP_USER:', process.env.SMTP_USER ? 'SET' : 'MISSING');
+      console.error('SMTP_PASS:', process.env.SMTP_PASS ? 'SET' : 'MISSING');
+      return res.status(500).json({
+        success: false,
+        error: 'SMTP credentials not configured',
+        details: 'SMTP_USER or SMTP_PASS is missing'
+      });
+    }
+
+    // Trim credentials to remove any whitespace
+    const smtpUser = process.env.SMTP_USER.trim();
+    const smtpPass = process.env.SMTP_PASS.trim();
+
     // Log configuration for debugging (without password)
     console.log('SMTP Configuration:', {
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
       secure: process.env.SMTP_SECURE,
-      user: process.env.SMTP_USER
+      user: smtpUser,
+      userLength: smtpUser.length,
+      passLength: smtpPass.length
     });
 
     // Create transporter with custom SMTP credentials
-    // GoDaddy often works better with port 587 and requireTLS
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      secure: process.env.SMTP_SECURE === 'true',
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: smtpUser,
+        pass: smtpPass
       },
       tls: {
         rejectUnauthorized: process.env.SMTP_REJECT_UNAUTHORIZED !== 'false',
-        ciphers: 'SSLv3' // Some GoDaddy servers need this
+        ciphers: 'SSLv3'
       },
-      requireTLS: true, // Force TLS
-      debug: true, // Enable debug output
-      logger: true // Log to console
+      requireTLS: true,
+      debug: true,
+      logger: true
     });
 
     // Verify connection configuration
@@ -63,11 +80,11 @@ module.exports = async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: `"${process.env.SMTP_FROM_NAME || 'Langa Events'}" <${process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER}>`,
+      from: `"${process.env.SMTP_FROM_NAME || 'Langa Events'}" <${process.env.SMTP_FROM_EMAIL || smtpUser}>`,
       to: process.env.SMTP_TO_EMAIL || 'info@langaevents.com',
       subject: formData._subject || 'New Event Inquiry - Langa Events',
       html: emailContent,
-      replyTo: formData.email || formData.Email || process.env.SMTP_USER
+      replyTo: formData.email || formData.Email || smtpUser
     };
 
     console.log('Sending email...');
@@ -84,6 +101,8 @@ module.exports = async (req, res) => {
 
   } catch (error) {
     console.error('Email error:', error);
+    console.error('Error code:', error.code);
+    console.error('Error command:', error.command);
     return res.status(500).json({ 
       success: false, 
       error: 'Failed to send email',
