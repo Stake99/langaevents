@@ -99,9 +99,8 @@ module.exports = async (req, res) => {
     emailContent += '<p style="color: #999; font-size: 12px; text-align: center;">This email was sent from the Langa Events website questionnaire form.</p>';
     emailContent += '</div>';
 
-    // Email options
-    const customerName = formData.name || formData.fullName || 'Unknown';
-    const subjectPrefix = customerName !== 'Unknown' ? `[${customerName}] ` : '';
+    // Email options - use the customerName and customerEmail already defined above
+    const subjectPrefix = customerName ? `[${customerName}] ` : '';
     
     const mailOptions = {
       from: `"${process.env.SMTP_FROM_NAME || 'Langa Events'}" <${process.env.SMTP_FROM_EMAIL || smtpUser}>`,
