@@ -61,8 +61,8 @@ export default function Hero() {
             <Image
               src="/online-registration.png"
               alt="Get a Quote"
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               style={{ objectFit: 'contain' }}
             />
             <span className={styles.btnText}>Get a Quote</span>

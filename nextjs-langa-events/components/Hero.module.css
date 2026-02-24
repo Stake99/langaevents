@@ -128,19 +128,18 @@
 
 .ctaBtn {
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 16px 36px;
-  border-radius: 8px;
+  gap: 6px;
+  padding: 12px 24px;
 }
 
 .btnText {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: rgba(44, 44, 44, 0.85);
+  letter-spacing: 1.2px;
+  color: rgba(44, 44, 44, 0.8);
 }
 
 .indicators {
