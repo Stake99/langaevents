@@ -20,10 +20,10 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Langa Events"
-              width={90}
-              height={28}
+              width={256}
+              height={80}
               priority
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: 'contain', height: '80px', width: 'auto' }}
             />
           </Link>
           
