@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import FAQ from '@/components/FAQ'
 import styles from './contact.module.css'
 
 export const metadata = {
@@ -113,6 +114,8 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        <FAQ />
       </div>
     </div>
   )

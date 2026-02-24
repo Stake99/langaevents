@@ -58,8 +58,27 @@
 .cta {
   background: var(--primary-color);
   color: var(--secondary-color) !important;
-  padding: 10px 25px;
-  border-radius: 50px;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 48px;
+  height: 48px;
+}
+
+.cta:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 195, 0, 0.5);
+}
+
+.icon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
@@ -81,5 +100,9 @@
 
   .menu.open {
     display: flex;
+  }
+
+  .cta {
+    justify-content: center;
   }
 }

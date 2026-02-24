@@ -8,13 +8,17 @@ import styles from './Header.module.css'
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const closeMenu = () => {
+    setIsOpen(false)
+  }
+
   return (
     <header className={styles.header}>
       <div className="container">
         <div className={styles.nav}>
-          <Link href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo} onClick={closeMenu}>
             <Image
-              src="/ChatGPT Image Feb 24, 2026, 10_47_31 AM.png"
+              src="/logo.png"
               alt="Langa Events"
               width={90}
               height={28}
@@ -34,11 +38,13 @@ export default function Header() {
           </button>
 
           <nav className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/services">Services</Link>
-            <Link href="/contact">Contact</Link>
-            <Link href="/questionnaire" className={styles.cta}>Questionnaire</Link>
+            <Link href="/" onClick={closeMenu}>Home</Link>
+            <Link href="/about" onClick={closeMenu}>About</Link>
+            <Link href="/services" onClick={closeMenu}>Services</Link>
+            <Link href="/contact" onClick={closeMenu}>Contact</Link>
+            <Link href="/questionnaire" className={styles.cta} title="Start Questionnaire" aria-label="Start Questionnaire" onClick={closeMenu}>
+              <span className={styles.icon}>📋</span>
+            </Link>
           </nav>
         </div>
       </div>
