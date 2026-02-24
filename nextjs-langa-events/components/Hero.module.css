@@ -1,0 +1,190 @@
+.hero {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.content h1 {
+  font-size: 72px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  text-shadow: 
+    2px 2px 20px rgba(0,0,0,0.8),
+    0 0 40px rgba(255, 195, 0, 0.3);
+  animation: titleFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.content h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--primary-color),
+    transparent
+  );
+  border-radius: 2px;
+  animation: underlineExpand 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
+@keyframes titleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes underlineExpand {
+  to {
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+.content p {
+  font-size: 26px;
+  margin-bottom: 50px;
+  margin-top: 40px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  text-shadow: 
+    1px 1px 10px rgba(0,0,0,0.8),
+    0 0 30px rgba(0,0,0,0.5);
+  animation: subtitleFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  opacity: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes subtitleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 3;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.indicator:hover {
+  background: rgba(255,255,255,0.8);
+  transform: scale(1.2);
+}
+
+.activeIndicator {
+  background: var(--primary-color);
+  width: 40px;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+
+  .content h1 {
+    font-size: 42px;
+    letter-spacing: -0.5px;
+  }
+
+  .content h1::after {
+    height: 3px;
+    width: 90%;
+  }
+
+  .content p {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: 32px;
+  }
+
+  .content p {
+    font-size: 18px;
+  }
+}
