@@ -75,10 +75,15 @@
 }
 
 .icon {
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.cta:hover .icon {
+  transform: scale(1.5);
 }
 
 @media (max-width: 768px) {

@@ -43,7 +43,13 @@ export default function Header() {
             <Link href="/services" onClick={closeMenu}>Services</Link>
             <Link href="/contact" onClick={closeMenu}>Contact</Link>
             <Link href="/questionnaire" className={styles.cta} title="Start Questionnaire" aria-label="Start Questionnaire" onClick={closeMenu}>
-              <span className={styles.icon}>📋</span>
+              <Image
+                src="/online-registration.png"
+                alt="Questionnaire"
+                width={24}
+                height={24}
+                className={styles.icon}
+              />
             </Link>
           </nav>
         </div>
