@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import styles from './Hero.module.css'
 
 const slides = [
@@ -56,7 +57,16 @@ export default function Hero() {
         <div className={styles.content}>
           <h1>{slides[currentSlide].title}</h1>
           <p>{slides[currentSlide].subtitle}</p>
-          <a href="/questionnaire" className="btn btn-primary">Get Started</a>
+          <a href="/questionnaire" className={`btn btn-primary ${styles.ctaBtn}`}>
+            <Image
+              src="/online-registration.png"
+              alt="Get a Quote"
+              width={24}
+              height={24}
+              style={{ objectFit: 'contain' }}
+            />
+            <span className={styles.btnText}>Get a Quote</span>
+          </a>
         </div>
       </div>
       <div className={styles.indicators}>
