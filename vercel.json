@@ -1,15 +1,7 @@
 {
-  "rewrites": [
-    {
-      "source": "/:path",
-      "destination": "/:path.html"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/:path.html",
-      "destination": "/:path",
-      "permanent": true
-    }
-  ]
+  "buildCommand": "cd nextjs-langa-events && npm install && npm run build",
+  "outputDirectory": "nextjs-langa-events/.next",
+  "installCommand": "cd nextjs-langa-events && npm install",
+  "framework": "nextjs",
+  "rootDirectory": "nextjs-langa-events"
 }
