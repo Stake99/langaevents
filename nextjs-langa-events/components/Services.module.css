@@ -1,0 +1,69 @@
+.services {
+  background: var(--light-bg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.service {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.iconWrapper {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 25px;
+  background: linear-gradient(135deg, rgba(255, 195, 0, 0.1), rgba(255, 219, 77, 0.1));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.service:hover .iconWrapper {
+  background: linear-gradient(135deg, var(--primary-color), #ffdb4d);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 10px 30px rgba(255, 195, 0, 0.3);
+}
+
+.icon {
+  font-size: 56px;
+  transition: transform 0.3s ease;
+}
+
+.service:hover .icon {
+  transform: scale(1.1);
+}
+
+.service h3 {
+  color: var(--secondary-color);
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.service p {
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
